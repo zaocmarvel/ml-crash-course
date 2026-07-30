@@ -25,7 +25,7 @@ to practice the full pipeline independently.
 Python, Pandas, Keras, Plotly
 
 ## Results
-- RMSE: [fill in your number]
+- RMSE: 0.7113.
 - Example predictions vs observed values in the notebook output
 
 ## Key learnings
