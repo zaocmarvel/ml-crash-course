@@ -40,7 +40,7 @@ Python, Pandas, scikit-learn, Matplotlib
 
 
 
-RMSE: **$[fill in your value]**
+RMSE: **$**
 
 ### Sample predictions
 
