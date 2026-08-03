@@ -5,7 +5,7 @@ districts, using scikit-learn's closed-form solver.
 
 ## Overview
 
-A scikit-learn reimplementation of the [Keras version](../keras/) of this 
+A scikit-learn reimplementation of the [Keras version](../) of this 
 project, built to compare a gradient-descent approach against a closed-form 
 one on the same problem.
 
