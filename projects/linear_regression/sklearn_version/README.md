@@ -40,7 +40,7 @@ Python, Pandas, scikit-learn, Matplotlib
 
 
 
-RMSE: **$**
+RMSE: **$71,745.67**
 
 ### Sample predictions
 
