@@ -60,9 +60,3 @@ RMSE: **$[fill in your value]**
   the right edge of the predicted vs. observed plot. The model can't 
   predict above what it saw in training, so all capped houses get spread 
   across a wide range of lower predictions.
-
-## Next steps
-
-- Try `Ridge` or `Lasso` regression with normalized features and compare
-- Filter out or separately handle the capped $500,001 houses
-- Compare feature importance via coefficient magnitudes (after normalizing)
