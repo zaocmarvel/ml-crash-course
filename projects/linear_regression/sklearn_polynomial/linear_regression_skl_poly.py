@@ -1,6 +1,7 @@
 #modules
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import pandas as pd
@@ -21,21 +22,26 @@ training_df['population_per_household'] = training_df['population']/training_df[
 X = training_df[['longitude', 'latitude', 'housing_median_age', 'rooms_per_household', 'bedrooms_per_room', 'population_per_household', 'median_income']].values
 y = training_df['median_house_value'].values.reshape(-1, 1)
 
-#split BEFORE transforming, to avoid leaking test data into feature generation
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
 
-#generate polynomial features (degree=2 means it adds squared terms + interaction terms)
+#polynomial features
 poly = PolynomialFeatures(degree=2, include_bias=False)
 X_train_poly = poly.fit_transform(X_train)
 X_test_poly = poly.transform(X_test)
 
+#normalize
+scaler = StandardScaler()
+X_train_poly_scaled = scaler.fit_transform(X_train_poly)
+X_test_poly_scaled = scaler.transform(X_test_poly)
+
 print("Original features:", X_train.shape[1])
 print("Polynomial features:", X_train_poly.shape[1])
+print("Scaled features: ", X_train_poly_scaled.shape[1])
 
 #creating the model
 model = LinearRegression()
-model.fit(X_train_poly, y_train)
-y_pred = model.predict(X_test_poly)
+model.fit(X_train_poly_scaled, y_train)
+y_pred = model.predict(X_test_poly_scaled)
 
 #rmse
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
