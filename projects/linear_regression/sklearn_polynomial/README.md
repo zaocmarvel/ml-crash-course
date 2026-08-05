@@ -25,16 +25,14 @@ non-linear model improves prediction accuracy over a straight-line fit.
   avoid leaking test data into feature construction
 - Used `PolynomialFeatures(degree=2)` to expand 7 features into 35 
   (squared terms + pairwise interactions)
-- Normalized the expanded feature set with `StandardScaler` — important 
-  here, since squared terms amplify scale differences even more than raw 
-  features
+- Normalized the expanded feature set with `StandardScaler`
 - Trained a `LinearRegression` model on the scaled polynomial features
 - Evaluated using RMSE and plotted predicted vs. observed values
 
 ## Bug I hit and fixed
 
 Initially trained the model on scaled features but predicted using the 
-unscaled test set — a mismatch, since the model expected inputs on a 
+unscaled test set "a mismatch", since the model expected inputs on a 
 normalized scale (mean 0, std 1). Fixed by making sure both training and 
 prediction inputs go through the same `StandardScaler` transform.
 
@@ -66,25 +64,15 @@ RMSE: **$65,917.94**
 |---|---|---|
 | Features | 7 | 35 |
 | Normalization | Not required | Required |
-| RMSE | $[fill in] | $65,917.94 |
+| RMSE | $71,745.67 | $65,917.94 |
 
 ## Key learnings
 
 - Why scaling matters even more with polynomial features, since squared 
   terms exaggerate differences in feature magnitude
-- The importance of splitting data *before* transforming it — fitting 
+- The importance of splitting data *before* transforming it (fitting 
   `PolynomialFeatures` or `StandardScaler` on the full dataset would leak 
-  test-set information into training
-- Prediction accuracy appears to degrade at higher house values — worth 
-  digging into further rather than treating the plot as conclusive
+  test-set information into training)
+- Prediction accuracy appears to degrade at higher house values
 - **Dataset limitation carried over:** `median_house_value` is still 
   capped at $500,001, visible as the vertical band near the right edge
-
-## Next steps
-
-- Compare against `Ridge` and `Lasso` regression (regularized models) as 
-  separate follow-up projects
-- Try different polynomial degrees (3+) to see if RMSE improves or 
-  overfitting worsens
-- Investigate whether prediction error actually grows for higher-value 
-  homes, using residual plots rather than eyeballing the scatter plot
