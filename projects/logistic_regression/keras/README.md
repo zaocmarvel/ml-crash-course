@@ -7,8 +7,8 @@ catching true positives over avoiding false alarms.
 ## Overview
 
 First classification project built independently, without a matching 
-exercise in Google's ML Crash Course — learned the approach from an 
-external tutorial and adapted it myself. Follows the same "clean, train, 
+exercise in Google's ML Crash Course, learned the approach from an 
+external tutorial and adapted it. Follows the same "clean, train, 
 evaluate" pipeline from the linear regression series, applied to a binary 
 classification problem for the first time.
 
@@ -44,8 +44,7 @@ tradeoffs:
 
 **Chose 0.45.** In a medical screening context, missing a true positive 
 (a patient with heart disease going untreated) is more costly than a 
-false positive (extra follow-up testing for a healthy patient) — so 
-recall matters more than precision here. Recall plateaus at 0.952 from 
+false positive (extra follow-up testing for a healthy patient) so recall matters more than precision here. Recall plateaus at 0.952 from 
 0.45 downward, meaning thresholds below 0.45 sacrifice precision with no 
 further recall gain. 0.45 sits at the most efficient point on that curve.
 
@@ -85,12 +84,3 @@ Precision: **0.727** | Recall: **0.952** (at threshold 0.45)
 - Why threshold choice is a judgment call tied to real-world cost of 
   errors, not a fixed default — same logic used in medical screening 
   models (e.g. COVID testing) applies here
-- sklearn's metrics functions work on any array of predictions/labels, 
-  regardless of which library trained the model — useful for evaluating 
-  a Keras model without relying only on Keras's built-in metric tracking
-
-## Next steps
-
-- Try the same problem in scikit-learn's `LogisticRegression` and compare
-- Add a confusion matrix and ROC curve for a fuller picture of performance
-- Try feature scaling and see if it changes convergence speed or accuracy
