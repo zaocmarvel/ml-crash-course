@@ -50,7 +50,7 @@ further recall gain. 0.45 sits at the most efficient point on that curve.
 
 ## Tech stack
 
-Python, Pandas, Keras, TensorFlow, Matplotlib, scikit-learn (for metrics)
+Python, Pandas, Keras, TensorFlow, Matplotlib
 
 ## Results
 
@@ -83,4 +83,4 @@ Precision: **0.727** | Recall: **0.952** (at threshold 0.45)
   sigmoid output needs a threshold applied before it becomes a 0/1 call
 - Why threshold choice is a judgment call tied to real-world cost of 
   errors, not a fixed default — same logic used in medical screening 
-  models (e.g. COVID testing) applies here
+  models (e.g. COVID testing) applies here.
